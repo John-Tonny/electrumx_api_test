@@ -39,7 +39,7 @@ from hashlib import sha256
 import argparse
 
 #ca_path = requests.certs.where()
-ca_path = '/root/myapi/cacert.pem'
+ca_path = '/root/electrumx_api_test/cacert.pem'
 
 import util
 import x509
@@ -371,7 +371,7 @@ def getBalance(socketPipe):
     method='blockchain.scripthash.get_balance'
     
     x = sha256()
-    x.update(bytes.fromhex("76a914ff3b989aee2d88c842a621cff37f8d3ff76b3a4b88ac"))
+    x.update(bytes.fromhex("76a914073772ca3e9014a4597b8de6da759512542d733d88ac")) #VcRWgmnDg9vECWFDxnhe7UE6MHRerMionZD
     y=x.hexdigest()
     scriptHash=bytes(reversed(bytes.fromhex(y))).hex()
     #print(scriptHash)
@@ -416,7 +416,7 @@ def getListUnspent(socketPipe):
     method='blockchain.scripthash.listunspent'
 
     x = sha256()
-    x.update(bytes.fromhex('76a914ff3b989aee2d88c842a621cff37f8d3ff76b3a4b88ac'))  #"Vcp85KYRxf9UX3wfDJUMKJKt1XhxUH6MYBB"
+    x.update(bytes.fromhex('76a914073772ca3e9014a4597b8de6da759512542d733d88ac'))  #VcRWgmnDg9vECWFDxnhe7UE6MHRerMionZD
     y=x.hexdigest()
     scriptHash=bytes(reversed(bytes.fromhex(y))).hex()
     #print(scriptHash)
@@ -607,7 +607,7 @@ if __name__ == "__main__":
     for i in range(len(argv)-2):
         params.append(argv[i+2])
         
-    client=TcpConnection('/root/myapi')
+    client=TcpConnection('/root/electrumx_api_test')
     interface=client.get_socket()
     socketPipe=SocketPipe(interface)
     
